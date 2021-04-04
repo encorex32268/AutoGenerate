@@ -53,19 +53,19 @@ class MainActivity : AppCompatActivity() {
 
 
     }
-    fun setSPStringByKey(key : String , value : String) {
+    private fun setSPStringByKey(key : String, value : String) {
         getSharedPreferences("Data", Context.MODE_PRIVATE)
                 .edit()
                 .putString(key,value)
                 .commit()
     }
 
-    fun getStringFromSP(key : String) : String?{
+    private fun getStringFromSP(key : String) : String?{
         return getSharedPreferences("Data", Context.MODE_PRIVATE)
                 .getString(key,"")
     }
 
-    fun getDate() : String{
+    private fun getDate() : String{
         val time = Date()
 
         val simpleDateFormatter  = SimpleDateFormat("MM月dd日")
@@ -74,7 +74,7 @@ class MainActivity : AppCompatActivity() {
         var finalResult = ""
         for (i in stringArray.indices) {
             val temp = stringArray[i].toString()
-            finalResult += if (i==0 && temp=="0"){ "" }else{ temp }
+            finalResult += if ( (i==0 || i==3 ) && temp=="0"){ "" }else{ temp }
         }
         return finalResult
     }
