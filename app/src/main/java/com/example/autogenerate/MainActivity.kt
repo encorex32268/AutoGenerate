@@ -16,6 +16,23 @@ import java.util.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
+    companion object{
+        fun getDate() : String{
+            val time = Date()
+
+            val simpleDateFormatter  = SimpleDateFormat("MM月dd日")
+            val result = simpleDateFormatter.format(time)
+            val stringArray = result.toCharArray()
+            var finalResult = ""
+            for (i in stringArray.indices) {
+                val temp = stringArray[i].toString()
+                finalResult += if ( (i==0 || i==3 ) && temp=="0"){ "" }else{ temp }
+            }
+            return finalResult
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,9 +46,9 @@ class MainActivity : AppCompatActivity() {
 
 
         copyButton.setOnClickListener {
-            val name = nameTextView.text.toString()
+            val name = getStringFromSP("name")?:"Please save Name"
             val fever = arrayListOf<Double>(36.3,36.4,36.5,36.6)
-            var randomer  = fever[Random.nextInt(fever.size)]
+            var randomer  = fever.random()
             var message = "$name 报告如下 \n" +
                     "${getDate()} \n" +
                     "1.是否咳簌，流鼻涕：否 \n" +
@@ -65,19 +82,7 @@ class MainActivity : AppCompatActivity() {
                 .getString(key,"")
     }
 
-    private fun getDate() : String{
-        val time = Date()
 
-        val simpleDateFormatter  = SimpleDateFormat("MM月dd日")
-        val result = simpleDateFormatter.format(time)
-        val stringArray = result.toCharArray()
-        var finalResult = ""
-        for (i in stringArray.indices) {
-            val temp = stringArray[i].toString()
-            finalResult += if ( (i==0 || i==3 ) && temp=="0"){ "" }else{ temp }
-        }
-        return finalResult
-    }
 
 
 
