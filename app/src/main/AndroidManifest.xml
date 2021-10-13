@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AutoGenerate">
         <receiver
-            android:name=".MyWidget"
+            android:name=".ui.MyWidget"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
@@ -21,7 +21,7 @@
                 android:resource="@xml/my_widget_info" />
         </receiver>
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
